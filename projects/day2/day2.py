@@ -59,9 +59,11 @@ num_valid_pos = 0
 #Ideally validate input before error is thrown at the end
 for i in range(0,len(arr)-1):
     key = parse_line(arr[i])
+    #test count logic
     if is_valid_count(key[0], key[1], key[2], key[3]) == True:
         num_valid_count+=1
-    elif is_valid_pos(key[0], key[1], key[2], key[3]) == True:
+    #test position logic
+    if is_valid_pos(key[0], key[1], key[2], key[3]) == True:
         num_valid_pos+=1
 
 print("is_valid_count: " + str(num_valid_count))
