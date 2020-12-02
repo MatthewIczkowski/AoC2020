@@ -14,9 +14,6 @@ def add_to_arr(line):
 
 io.read_file_by_newline("day2.txt", add_to_arr)
 
-#Need to figure out way to eliminate \n at end of password
-#For some reason password.strip() did not remove haning \n
-#Current implementation with password[:-1] removes last character of final password entry
 def parse_line(line):
     range, letter, password = line.split(" ", 2)
     low, high = range.split("-",1)
