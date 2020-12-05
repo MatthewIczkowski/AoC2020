@@ -3,7 +3,7 @@ def read_file_by_newline(file_name, fn, delimiter='\n'):
         line = fp.readline()
         while line:
             try:
-                line = fp.readline()
                 fn(line)
+                line = fp.readline()
             except Exception as e:
                 print(e)
