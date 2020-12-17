@@ -55,19 +55,22 @@ io.read_file_by_newline("day5.txt", add_to_arr)
 highest_ID = -1
 row = 0
 col = 0
-
+passes_sorted = []
 for x in passes:
     #print(x)
     row = find_row(x)
     col = find_col(x)
     current_ID = row*8+col
-    #print("Row: ", row)
-    #print("Col: ", col)
-    #print("Current ID: ", current_ID)
+    passes_sorted.append(current_ID)
     if current_ID > highest_ID:
         highest_ID = current_ID
 
 print('Highest ID: ', highest_ID)
+passes_sorted = sorted(passes_sorted)
+for i in range(0, len(passes_sorted)-1):
+    if passes_sorted[i] != (passes_sorted[i+1] - 1):
+        print("Open seat ID: ", passes_sorted[i]+1)
+
 
 
 
