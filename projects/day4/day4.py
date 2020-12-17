@@ -35,11 +35,6 @@ def parse_people(rows):
     #print("Number of peoeple in persons: ", len(persons))
     return persons
 
-#Function to create dictonary of attributes from person
-def parse_person(person):
-    attributes = dict(x.split(':') for x in person.split(' '))
-    return attributes
-
 #Function to test if passport has all the required fields
 def is_valid_passport_1(passport):
     req_fields = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"]
@@ -55,7 +50,12 @@ def is_valid_passport_1(passport):
     else:
         return 0
 
-#Function to test if passport with all required fields meets the data validation criteria
+#Function to create dictonary of attributes from person passport that meets basic criteria
+def parse_person(person):
+    attributes = dict(x.split(':') for x in person.split(' '))
+    return attributes
+
+#Function to test if passport attributes meet the data validation criteria
 def is_valid_passport_2(passport):
 
     hcl_chars = ['#', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
@@ -96,16 +96,16 @@ def is_valid_passport_2(passport):
 persons = parse_people(rows)
 num_valid_1 = 0
 num_valid_2 = 0
-passdict = {}
+pass_dict = {}
 for person in persons:
     if is_valid_passport_1(person) == 1:
         num_valid_1 += 1
         #If passport has all the required fields then see if passport has valid data
-        passdict = parse_person(person)
-        num_valid_2 += is_valid_passport_2(passdict)
+        pass_dict = parse_person(person)
+        num_valid_2 += is_valid_passport_2(pass_dict)
 
-print("Number of Valid Passports (logic - is_valid_passport_1): ", num_valid_1)
-print("Number of Valid Passports (logic - is_valid_passport_2): ", num_valid_2)
+print("Number of Valid Passports (is_valid_passport_1): ", num_valid_1)
+print("Number of Valid Passports (is_valid_passport_2): ", num_valid_2)
 
 
 
