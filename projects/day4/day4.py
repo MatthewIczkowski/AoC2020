@@ -60,14 +60,15 @@ def is_valid_passport_2(passport):
 
     hcl_chars = ['#', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
     ecl_types = ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth']
+    hair_color = passport['hcl']
 
-    if int(passport['byr']) < 1920 or int(passport['byr']) > 2020:
+    if len(passport['byr']) != 4 or int(passport['byr']) < 1920 or int(passport['byr']) > 2002:
         #print(passport, '\n', "Invalid passport, 'byr' out of range. 'byr': ", passport['byr'])
         return 0
-    elif int(passport['iyr']) < 2010 or int(passport['iyr']) > 2020:
+    elif len(passport['iyr']) != 4 or int(passport['iyr']) < 2010 or int(passport['iyr']) > 2020:
         #print(passport, '\n', "Invalid passport, 'iyr' out of range. 'iyr': ", passport['iyr'])
         return 0
-    elif int(passport['eyr']) < 2020 or int(passport['eyr']) > 2030:
+    elif len(passport['eyr']) != 4 or int(passport['eyr']) < 2020 or int(passport['eyr']) > 2030:
         #print(passport, '\n', "Invalid passport, 'eyr' out of range. 'eyr': ", passport['eyr'])
         return 0
     elif 'cm' not in passport['hgt'] and 'in' not in passport['hgt']:
@@ -79,8 +80,8 @@ def is_valid_passport_2(passport):
     elif 'in' in passport['hgt'] and (int(passport['hgt'].strip('cmin')) < 59 or int(passport['hgt'].strip('cmin')) > 76):
         #print(passport, '\n', "Invalid passport, 'hgt' out of in range. 'hgt': ", passport['hgt'])
         return 0
-    elif '#' not in passport['hcl'] or len(passport['hcl']) != 7 or any(x not in hcl_chars for x in passport['hcl']):
-        #print(passport, '\n', "Invalid passport, 'hcl' does not match required format. 'hcl': ", passport['hcl'])
+    elif hair_color[0] != '#' or len(hair_color) != 7 or any(x not in hcl_chars for x in hair_color):
+        #print(passport, '\n', "Invalid passport, 'hcl' does not match required format. 'hcl': ", hair_color)
         return 0
     elif passport['ecl'] not in ecl_types:
         # print(passport, '\n', "Invalid passport, 'ecl' does not match value in 'ecl' list. 'ecl': ", passport['ecl'])
