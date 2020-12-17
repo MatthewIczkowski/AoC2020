@@ -13,43 +13,31 @@ def add_to_arr(line):
 
 def find_row(map):
     map = map.strip('RL')
-    #print(map)
-    row = 0
     range = [0,127]
-
     for x in map:
         if x == 'F':
             range[1] = math.floor(statistics.median(range))
-            #print(range)
         else:
             range[0] = math.ceil(statistics.median(range))
-            #print(range)
 
     if map[-1] == "F":
-        row = range[0]
+        return range[0]
     else:
-        row = range[1]
-    return row
+        return range[1]
 
 def find_col(map):
     map = map.strip('FB')
-    #print(map)
-    col = 0
     range = [0, 7]
-
     for x in map:
         if x == 'L':
             range[1] = math.floor(statistics.median(range))
-            # print(range)
         else:
             range[0] = math.ceil(statistics.median(range))
-            # print(range)
 
     if map[-1] == "R":
-        col = range[0]
+        return range[0]
     else:
-        col = range[1]
-    return col
+        return range[1]
 
 io.read_file_by_newline("day5.txt", add_to_arr)
 highest_ID = -1
@@ -57,7 +45,6 @@ row = 0
 col = 0
 passes_sorted = []
 for x in passes:
-    #print(x)
     row = find_row(x)
     col = find_col(x)
     current_ID = row*8+col
